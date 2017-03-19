@@ -10,6 +10,6 @@ export class Project1Page {
   }
 
   getTableText() {
-    return element(by.css('emp')).getText();
+    return element(by.css('table')).getText();
   }
 }
