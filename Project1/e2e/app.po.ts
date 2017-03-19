@@ -8,4 +8,8 @@ export class Project1Page {
   getParagraphText() {
     return element(by.css('app-root h1')).getText();
   }
+
+  getTableText() {
+    return element(by.css('emp')).getText();
+  }
 }
