@@ -5,3 +5,16 @@
 <span>No. of Clicks: {{countClicks}}
 <br/>
 <button (click)="increaseCountClicks()">Click Me Please</button>
+<br/><br/>
+<table id="SourceTable" class="SourceTable" style="border: solid;border-color: gray">
+    <tr id="HeaderRow" class="HeaderRow" style="background-color: gray">
+      <td>Name</td>
+      <td>Task</td>
+      <td>Hours</td>
+    </tr>
+    <tr *ngFor="let employee of employees">
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.task }}</td>
+        <td>{{ employee.hours }}</td>
+    </tr>
+</table>
