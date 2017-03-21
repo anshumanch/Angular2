@@ -1,12 +1,10 @@
-<h1>
+<h1 class="display-3">
   {{title}}
 </h1>
-<br/>
-<span>No. of Clicks: {{countClicks}}
-<br/>
-<button (click)="increaseCountClicks()">Click Me Please</button>
-<br/><br/>
-<table id="SourceTable" class="SourceTable" style="border: solid;border-color: gray">
+<span style="visibility: hidden">No. of Clicks: {{countClicks}}</span>
+<button (click)="increaseCountClicks()" style="visibility: hidden">Click Me Please</button>
+<h2 class="display-3">Source Table</h2>
+<table id="SourceTable" class=" table table-hover SourceTable" style="border: solid;border-color: gray">
     <tr id="HeaderRow" class="HeaderRow" style="background-color: gray">
       <td>Select All</td>
       <td>Name</td>
@@ -14,23 +12,21 @@
       <td>Hours</td>
     </tr>
     <tr id="FilterRow" class="HeaderRow" style="background-color: gray">
-      <td><input type="checkbox" id="selectEmployeeAll" [(ngModel)]="selectAllEmployees" (change) = "toggleSelectAllRows()"></td>
-      <td><input type="text" id="searchName" placeholder="Filter on Name" [(ngModel)]="nameVal" (keyup)="filterRows()"/></td>
-      <td><input type="text" id="searchTask" placeholder="Filter on Task" [(ngModel)]="taskVal" (keyup)="filterRows()"/></td>
-      <td><input type="text" id="searchHours" placeholder="Filter on Hours" [(ngModel)]="hoursVal" (keyup)="filterRows()"/></td>
+      <td><input type="checkbox" id="selectEmployeeAll" class="form-check-input" [(ngModel)]="selectAllEmployees" (change) = "toggleSelectAllRows()"></td>
+      <td><input type="text" id="searchName" class="form-control" placeholder="Filter on Name" [(ngModel)]="nameVal" (keyup)="filterRows()"/></td>
+      <td><input type="text" id="searchTask" class="form-control" placeholder="Filter on Task" [(ngModel)]="taskVal" (keyup)="filterRows()"/></td>
+      <td><input type="text" id="searchHours" class="form-control" placeholder="Filter on Hours" [(ngModel)]="hoursVal" (keyup)="filterRows()"/></td>
     </tr>
     <tr *ngFor="let employee of sourceEmployees">
-        <td *ngIf="employee.visible"><input type="checkbox" [(ngModel)]="employee.selected" (change) = "setEmployeeSelected()"></td>
+        <td *ngIf="employee.visible"><input type="checkbox" class="form-check-input" [(ngModel)]="employee.selected" (change) = "setEmployeeSelected()"></td>
         <td *ngIf="employee.visible">{{ employee.name }}</td>
         <td *ngIf="employee.visible">{{ employee.task }}</td>
         <td *ngIf="employee.visible">{{ employee.hours }}</td>
     </tr>
 </table>
-<br/>
 <button (click)="transferSelectedData()" style="visibility: hidden">Transfer to Destination Table</button>
-<br/>
-<br/>
-<table id="DestinationTable" class="SourceTable" style="border: solid;border-color: gray">
+<h2 class="display-3">Destination Table</h2>
+<table id="DestinationTable" class="table table-hover DestinationTable" style="border: solid;border-color: gray">
     <tr id="DestHeaderRow" class="HeaderRow" style="background-color: gray">
       <td>Name</td>
       <td>Task</td>
