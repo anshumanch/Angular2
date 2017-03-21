@@ -8,13 +8,37 @@
 <br/><br/>
 <table id="SourceTable" class="SourceTable" style="border: solid;border-color: gray">
     <tr id="HeaderRow" class="HeaderRow" style="background-color: gray">
+      <td>Select All</td>
       <td>Name</td>
       <td>Task</td>
       <td>Hours</td>
     </tr>
-    <tr *ngFor="let employee of employees">
-        <td>{{ employee.name }}</td>
-        <td>{{ employee.task }}</td>
-        <td>{{ employee.hours }}</td>
+    <tr id="FilterRow" class="HeaderRow" style="background-color: gray">
+      <td><input type="checkbox" id="selectEmployeeAll" [(ngModel)]="selectAllEmployees" (change) = "toggleSelectAllRows()"></td>
+      <td><input type="text" id="searchName" placeholder="Filter on Name" [(ngModel)]="nameVal" (keyup)="filterRows()"/></td>
+      <td><input type="text" id="searchTask" placeholder="Filter on Task" [(ngModel)]="taskVal" (keyup)="filterRows()"/></td>
+      <td><input type="text" id="searchHours" placeholder="Filter on Hours" [(ngModel)]="hoursVal" (keyup)="filterRows()"/></td>
+    </tr>
+    <tr *ngFor="let employee of sourceEmployees">
+        <td *ngIf="employee.visible"><input type="checkbox" [(ngModel)]="employee.selected" (change) = "setEmployeeSelected()"></td>
+        <td *ngIf="employee.visible">{{ employee.name }}</td>
+        <td *ngIf="employee.visible">{{ employee.task }}</td>
+        <td *ngIf="employee.visible">{{ employee.hours }}</td>
+    </tr>
+</table>
+<br/>
+<button (click)="transferSelectedData()">Transfer to Destination Table</button>
+<br/>
+<br/>
+<table id="DestinationTable" class="SourceTable" style="border: solid;border-color: gray">
+    <tr id="DestHeaderRow" class="HeaderRow" style="background-color: gray">
+      <td>Name</td>
+      <td>Task</td>
+      <td>Hours</td>
+    </tr>
+    <tr *ngFor="let employee of destinationEmployees">
+        <td *ngIf="employee.visible">{{ employee.name }}</td>
+        <td *ngIf="employee.visible">{{ employee.task }}</td>
+        <td *ngIf="employee.visible">{{ employee.hours }}</td>
     </tr>
 </table>
