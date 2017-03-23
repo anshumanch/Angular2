@@ -1,4 +1,3 @@
-import { EmployeeComponent } from './employee.component';
 
 export class EmployeeService{
     getEmployeeDetails() : {name: string, task: string, hours: number, selected: boolean, visible: boolean}[] {
