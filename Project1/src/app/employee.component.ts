@@ -5,8 +5,6 @@ import { Component } from "@angular/core";
     templateUrl: './employee.component.html'
 })
 export class EmployeeComponent {
-    title = "Employees Table";
-
     name: string;
     task: string;
     hours: number;

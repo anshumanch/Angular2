@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { EmployeeComponent } from './employee.component';
+import {EmployeeService} from './employee.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [EmployeeComponent]
+  providers: [EmployeeComponent, EmployeeService]
 })
 export class AppComponent {
   title = 'Angular2 Works!';
@@ -17,31 +18,9 @@ export class AppComponent {
   sourceEmployees: EmployeeComponent[] = [];
   destinationEmployees: EmployeeComponent[] = [];
 
-  constructor() {
-    var emp1 = new EmployeeComponent();
-    emp1.name = "Anshuman";
-    emp1.task = "POC";
-    emp1.hours = 10;
-    this.sourceEmployees.push(emp1);
-
-    var emp2 = new EmployeeComponent();
-    emp2.name = "Arpita";
-    emp2.task = "Development";
-    emp2.hours = 20;
-    this.sourceEmployees.push(emp2);
-
-    var emp3 = new EmployeeComponent();
-    emp3.name = "Aryan";
-    emp3.task = "Testing";
-    emp3.hours = 15;
-    this.sourceEmployees.push(emp3);
-
-    var emp4 = new EmployeeComponent();
-    emp4.name = "Manjula";
-    emp4.task = "Deployment";
-    emp4.hours = 10;
-    this.sourceEmployees.push(emp4);
-  }
+  constructor(empSrv:EmployeeService) {
+    this.sourceEmployees =  <EmployeeComponent[]> empSrv.getEmployeeDetails();
+    }
 
   increaseCountClicks() {
     this.countClicks++;
